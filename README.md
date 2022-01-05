@@ -1,55 +1,48 @@
-anki-touch
-==========
+# anki-touch
 
-Anki 2.x add-on that helps using with the touch interface.
-
-(todo: Animated gif will be here!!)
-
+Anki 2.1.x add-on that helps using with the touch interface.
 
 ## Description
 
-I have a problem which is hard to use Anki 2.x with touch on the Microsoft Surface Pro 3.
+Anki's interface is not well-suited for use with a touchscreen. There is a need for doing the most common actions easily with a touch gesture, rather than only having buttons available at the bottom of the screen.
 
-This addon aims for easy to use with the touch device.
+When presented with a question, this is to show the back of the card.
 
-Inspired by [Tinder] and [mikan].
+When presented with the back of a card, this is to answer the card.
 
+Possible future features:
+ - diagonal swipes to do further actions, such as undoing, answering as "hard" as well.
+ - Improve the quality of the code - this is my first Anki addon
+
+If you have an idea for a feature, please open an issue.
+
+Forked from [tobynet's 2.0 addon](https://github.com/tobynet/anki-touch). Thank you for the template to work off of!
 
 ## Requirements
 
-* [Anki] 2.0 or lator
-* Windows 8.1 with the touch interface.
-    * Perhaps, it will be able to use at linux desktop...
-
-
-## How to use
-
-When you see the front of card on Anki...
-
-* **Begin to touch screen** to `Show answer`.
-* Keep it and **swipe right** to `Good`, it means **CORRECT!, REMEBERED!**
-* Or, **swipe left** to `Again`, it means **MISS, FORGOTTEN**
-
+* [Anki] 2.1.? or lator (tested on 2.1.50)
+* Should work on all platforms as it is using QtWebEngine javascript to get the actions (tested on Linux Wayland)
 
 ## Install
 
-**Not uploaded to ankiweb.net for easy to install yet** 
+Not uploaded to ankiweb.net for easy to install yet, because this is my first addon and I'm not sure if it will play with other addons correctly, and whether it works on all types of cards correctly (it adds an eventListener to the root document, and picks up many events. Even some it maybe shouldn't).
 
+### Linux
 
-1. Download [anki-touch.py], then save it to the addons' folder.
+```
+cd ~/.local/share/Anki2/addons21/
+git clone https://github.com/magnus-ISU/anki-touch
+```
 
-    The addons' folder is...
+### Windows
 
-    * Windows 8.1: %USERPROFILE%\Documents\Anki\addons\
-    * Ubuntu Linux 12.04: ~/Anki/addons/
+??? (Please open an issue if you know)
 
-2. Start or restart Anki
-
+tobynet said the addons' folder is `%USERPROFILE%/Documents/Anki/addons/` but this likely changed since then
 
 ## Author
 
-[tobynet](https://github.com/tobynet/)
-
+[Magnus Anderson](https://github.com/magnus-ISU/)
 
 ## License
 
@@ -57,15 +50,7 @@ When you see the front of card on Anki...
 
 ## Contribution
 
-1. Fork it ( https://github.com/tobynet/anki-touch/fork )
-2. Create your feature branch (git checkout -b my-new-feature)
-3. Commit your changes (git commit -am 'Add some feature')
-4. Push to the branch (git push origin my-new-feature)
-5. Create new Pull Request
+Pull Requests welcome!
 
-
-[Anki]: http://ankisrs.net/
-[Tinder]: http://www.gotinder.com/
-[mikan]: http://www.youtube.com/watch?v=5ujG-0zrtrw
-[anki-touch.py]: https://raw.githubusercontent.com/tobynet/anki-touch/master/anki-touch.py
+[Anki]: apps.ankiweb.net
 
