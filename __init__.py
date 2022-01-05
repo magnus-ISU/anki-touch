@@ -59,7 +59,7 @@ def on_js_message(handled, msg, context):
 
 def show_back():
     if mw.reviewer.state == "question":
-        mw.reviewer._showAnswer()
+        mw.reviewer._getTypedAnswer()
     else:
         print("Error in anki_touch addon - please open an issue")
 
