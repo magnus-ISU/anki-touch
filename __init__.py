@@ -47,25 +47,41 @@ def on_js_message(handled, msg, context):
             diffX = float(msg) - downX
             if diffX < -SWIPE_NEEDED_PIXELS:
                 if not inQuestion:
-                    print("Failed")
+                    answer_question(False)
                 else:
-                    print("Show back")
+                    show_back()
             elif diffX > SWIPE_NEEDED_PIXELS:
                 if not inQuestion:
-                    print("Successed")
+                    answer_question(True)
                 else:
-                    print("Show back")
+                    show_back()
         return True, None
 
     return handled
+
+def show_back():
+    if mw.reviewer.state == "question":
+        mw.reviewer._showAnswer()
+    else:
+        print("Error in anki_touch addon - please open an issue")
+
+def answer_question(didSucceed):
+    if mw.reviewer.state == "answer":
+        print(f"Answer question: {didSucceed}")
+        mw.reviewer._answerCard(
+            mw.reviewer._defaultEase() if didSucceed else 1
+        )
+    else:
+        print("Error in anki_touch addon - please open an issue")
 
 gui_hooks.webview_did_receive_js_message.append(on_js_message)
 
 # Adding CSS/JS to card
 
 # There are two types of events we listen to: click and touch ones
-# click events are the only ones we care about in question pages, and they show the back side of the card
-# Touchstart/end events and mousedown/up events are handled on the back to accept/reject cards if the x changes sufficiently (hardcoded as 150px)
+# Touchstart/end events and mousedown/up events are handled if the x changes sufficiently (hardcoded as 150px)
+# On the front to show cards
+# On the back to answer cards
 swipe_handler = """
 <script type="text/javascript">
 function intercept_down(event) {
