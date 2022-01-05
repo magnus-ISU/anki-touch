@@ -1,6 +1,6 @@
 # anki-touch
 
-Anki 2.1.x add-on that helps using with the touch interface.
+Anki 2.1.x add-on that lets you swipe to answer cards.
 
 ## Description
 

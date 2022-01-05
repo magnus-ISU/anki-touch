@@ -4,9 +4,7 @@
 # See <https://www.gnu.org/licenses/>.
 
 """
-An example of porting old template/wrapping code to Anki 2.1.20.
-The add-on now looks for {{clickable:Tags}} instead of just {{Tags}}
-on the template.
+Anki-touch addon. Swipe to show the back of a card and to answer it.
 """
 
 from anki import hooks
