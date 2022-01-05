@@ -10,8 +10,9 @@ When presented with a question, this is to show the back of the card.
 
 When presented with the back of a card, this is to answer the card.
 
-Possible future features:
- - diagonal swipes to do further actions, such as undoing, answering as "hard" as well.
+Possible future work:
+ - Diagonal swipes to do further actions, such as undoing, answering as "hard" as well, etc
+ - Don't act if the user is interacting with an element on a card, such as a button
  - Improve the quality of the code - this is my first Anki addon
 
 If you have an idea for a feature, please open an issue.
@@ -20,7 +21,7 @@ Forked from [tobynet's 2.0 addon](https://github.com/tobynet/anki-touch). Thank 
 
 ## Requirements
 
-* [Anki] 2.1.? or lator (tested on 2.1.50)
+* [Anki](apps.ankiweb.net) 2.1.? or lator (tested on 2.1.50)
 * Should work on all platforms as it is using QtWebEngine javascript to get the actions (tested on Linux Wayland)
 
 ## Install
@@ -51,6 +52,4 @@ tobynet said the addons' folder is `%USERPROFILE%/Documents/Anki/addons/` but th
 ## Contribution
 
 Pull Requests welcome!
-
-[Anki]: apps.ankiweb.net
 
