@@ -9,7 +9,7 @@ __Version__ = "0.1.0"
 
 """Add-on for Anki 2.x that helps using with the touch interface."""
 
-from PyQt4.QtCore import Qt, QEvent
+from aqt import *
 
 from aqt import mw
 from aqt.utils import showInfo, tooltip
@@ -18,6 +18,7 @@ from anki.hooks import wrap
 pressed_position = None;
 
 def show_answer():
+    print("Touch addon installed")
     u"""Change state to answer"""
     if mw.reviewer.state == "question":
         mw.reviewer._showAnswerHack()
@@ -37,7 +38,7 @@ def is_correct_area(pressed_pos,released_pos):
 
 def my_event(event):
     u"""Hook event to detect touch"""
-    tooltip("Event: " + `event`)
+    tooltip("Event: " + event)
     if event.type() == QEvent.TouchBegin:
         show_answer()
 
@@ -63,9 +64,13 @@ def my_mouse_release_event(event):
                 released_pos = event.pos()))
 
 
+import pprint
+
 # Hook some events
-mw.web.mousePressEvent = wrap(mw.web.mousePressEvent, my_mouse_press_event)
-mw.web.mouseReleaseEvent = wrap(mw.web.mouseReleaseEvent, my_mouse_release_event)
+#mw.web.mousePressEvent = wrap(mw.web.mousePressEvent, my_mouse_press_event)
+#mw.web.mouseReleaseEvent = wrap(mw.web.mouseReleaseEvent, my_mouse_release_event)
+mw.web.mousePressEvent = my_mouse_press_event
+mw.web.mouseReleaseEvent = my_mouse_release_event
 
 # I can't hook "mw.web.event", why?????
 #mw.web.event = wrap(mw.web.event, my_event)
