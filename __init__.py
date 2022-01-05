@@ -1,25 +1,13 @@
-# Copyright 2013 Abdolmahdi Saravi <amsaravi@yahoo.com>
-# Copyright 2019 Joseph Lorimer <joseph@lorimer.me>
+# Copyright 2021 Magnus Anderson <magnus@iastate.edu>
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+# This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+# See <https://www.gnu.org/licenses/>.
 
 """
 An example of porting old template/wrapping code to Anki 2.1.20.
 The add-on now looks for {{clickable:Tags}} instead of just {{Tags}}
 on the template.
 """
-
 
 from anki import hooks
 from anki.template import TemplateRenderContext
@@ -36,7 +24,7 @@ from aqt.utils import tooltip
 
 
 def on_js_message(handled, msg, context):
-    print("on_js_message")
+    print("on_js_message: " + msg)
     if isinstance(context, CardLayout) and (
         msg.startswith("ct_click_") or msg.startswith("ct_dblclick_")
     ):
@@ -99,7 +87,7 @@ add_to_card = """
     cursor: pointer;
     cursor: hand;
   }
-  
+
   .nightMode kbd { color: black; }
 </style>
 <script type="text/javascript">
@@ -120,42 +108,25 @@ click_handler = """
 function intercept_click(thing) {
     pycmd("anki_touch_" + thing)
 }
-document.addEventListener("onclick", intercept_click);
+pycmd("anki_touch_start");
+document.addEventListener("click", intercept_click);
 </script>
 """
 
-def on_card_render(output, context):
-    print("on_card_render")
-    output.question_text += click_handler
-    output.answer_text += click_handler
-hooks.card_did_render.append(on_card_render)
+# Inject the javascript that handles clicks
+def on_card_show(html, card, context):
+    print("on_card_show")
+    return html + click_handler
+gui_hooks.card_will_show.append(on_card_show)
 
-
+inQuestion = True
 def show_question(card):
-    print("Shewed question")
+    global inQuestion
+    inQuestion = True
 
 def show_answer(card):
-    print("Shewed answer")
+    global inQuestion
+    inQuestion = False
 
 gui_hooks.reviewer_did_show_question.append(show_question);
 gui_hooks.reviewer_did_show_answer.append(show_answer);
-
-#def on_field_filter(text, field, filter, context: TemplateRenderContext):
-#    if filter != "clickable" or field != "Tags":
-#        return text
-#
-#    kbd = """
-#<kbd onclick="ct_click('{tag}')" ondblclick="ct_dblclick('{tag}', '{deck}')">
-#  {tag}
-#</kbd>
-#"""
-#
-#    return "".join(
-#        [
-#            kbd.format(tag=tag, deck=context.fields()["Deck"])
-#            for tag in context.fields()["Tags"].split()
-#        ]
-#    )
-#
-#
-#hooks.field_filter.append(on_field_filter)
