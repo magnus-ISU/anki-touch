@@ -65,7 +65,6 @@ def show_back():
 
 def answer_question(didSucceed):
     if mw.reviewer.state == "answer":
-        print(f"Answer question: {didSucceed}")
         mw.reviewer._answerCard(
             mw.reviewer._defaultEase() if didSucceed else 1
         )
@@ -109,7 +108,6 @@ document.anki_touch = true;
 
 # Inject the javascript that handles swipes
 def on_card_show(html, card, context):
-    print("on_card_show")
     return html + swipe_handler
 gui_hooks.card_will_show.append(on_card_show)
 
