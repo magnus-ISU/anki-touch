@@ -45,12 +45,12 @@ def on_js_message(handled, msg, context):
             diffX = float(msg) - downX
             if diffX < -SWIPE_NEEDED_PIXELS:
                 if not inQuestion:
-                    answer_question(False)
+                    answer_question(1)
                 else:
                     show_back()
             elif diffX > SWIPE_NEEDED_PIXELS:
                 if not inQuestion:
-                    answer_question(True)
+                    answer_question(mw.reviewer._defaultEase())
                 else:
                     show_back()
         return True, None
@@ -63,11 +63,9 @@ def show_back():
     else:
         print("Error in anki_touch addon - please open an issue")
 
-def answer_question(didSucceed):
+def answer_question(ease):
     if mw.reviewer.state == "answer":
-        mw.reviewer._answerCard(
-            mw.reviewer._defaultEase() if didSucceed else 1
-        )
+        mw.reviewer._answerCard(ease)
     else:
         print("Error in anki_touch addon - please open an issue")
 
