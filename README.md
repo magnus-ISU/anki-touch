@@ -37,9 +37,7 @@ git clone https://github.com/magnus-ISU/anki-touch
 
 ### Windows
 
-??? (Please open an issue if you know)
-
-tobynet said the addons' folder is `%USERPROFILE%/Documents/Anki/addons/` but this likely changed since then
+Copy the .zip file from GitHub to %APPDATA%/Roaming/Anki/addons21/, then extract and make sure the folder doesn't have another folder inside. Open Anki and you should see the addon installed in addons.
 
 ## Author
 
