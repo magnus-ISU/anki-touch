@@ -6,9 +6,9 @@ Anki 2.1.x add-on that lets you swipe to answer cards.
 
 Anki's interface is not well-suited for use with a touchscreen. There is a need for doing the most common actions easily with a touch gesture, rather than only having buttons available at the bottom of the screen.
 
-When presented with a question, this is to show the back of the card.
+When presented with a question, swipe right show the back of the card.
 
-When presented with the back of a card, this is to answer the card.
+When presented with the back of a card, swipe right is to answer the card `good`, swipe left to answer as `hard`.
 
 Possible future work:
  - Diagonal swipes to do further actions, such as undoing, answering as "hard" as well, etc
@@ -21,8 +21,8 @@ Forked from [tobynet's 2.0 addon](https://github.com/tobynet/anki-touch). Thank 
 
 ## Requirements
 
-* [Anki](apps.ankiweb.net) 2.1.? or lator (tested on 2.1.50)
-* Should work on all platforms as it is using QtWebEngine javascript to get the actions (tested on Linux Wayland)
+* [Anki](apps.ankiweb.net) 2.1.? or later (tested on 2.1.50 and 24.06.3)
+* Should work on all platforms as it is using QtWebEngine javascript to get the actions (tested on Linux Wayland and Windows 11)
 
 ## Install
 
@@ -37,9 +37,7 @@ git clone https://github.com/magnus-ISU/anki-touch
 
 ### Windows
 
-??? (Please open an issue if you know)
-
-tobynet said the addons' folder is `%USERPROFILE%/Documents/Anki/addons/` but this likely changed since then
+Copy the .zip file from GitHub to %APPDATA%/Roaming/Anki/addons21/, then extract and make sure the folder doesn't have another folder inside. Open Anki and you should see the addon installed in addons.
 
 ## Author
 
